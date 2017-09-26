@@ -5,9 +5,6 @@ class IngredientsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
   end
 
-  def edit
-  end
-
   def create
     @recipe = Recipe.find(params[:recipe_id])
     @recipe.ingredients.create(ingredient_params)

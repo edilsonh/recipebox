@@ -1,11 +1,8 @@
 class StepsController < ApplicationController
-  before_action :set_step, only: [:show, :edit, :update, :destroy]
+  before_action :set_step, only: [:show, :update, :edit, :destroy]
   def new
     @step = Step.new
     @recipe = Recipe.find(params[:recipe_id])
-  end
-
-  def edit
   end
 
   def create
