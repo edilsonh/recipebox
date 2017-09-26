@@ -29,7 +29,16 @@
 
 <p>
   <strong>Steps</strong>
-  <p><%= link_to 'Add Step' %></p>
+    <ol>
+      <% @recipe.steps.each do |step| %>
+          <li>
+            <%= step.details %>
+            <%= link_to 'Edit', edit_recipe_step_path(params[:id], step) %>
+            <%= link_to 'Delete', recipe_step_path(params[:id], step), method: :delete, data: { confirm: 'Are you sure?'} %>
+          </li>
+      <% end %>
+    </ol>
+  <p><%= link_to 'Add Step', new_recipe_step_path(@recipe) %></p>
 </p>
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>

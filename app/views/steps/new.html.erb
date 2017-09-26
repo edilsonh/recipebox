@@ -1,2 +1,4 @@
-<h1>Steps#new</h1>
-<p>Find me in app/views/steps/new.html.erb</p>
+<h1>Steps for <%= @recipe.title %></h1>
+<%= render 'form', step: @step, recipe: @recipe %>
+
+<%= link_to 'Back', recipe_path(@recipe) %>
