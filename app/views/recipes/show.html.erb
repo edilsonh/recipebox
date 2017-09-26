@@ -4,6 +4,32 @@
   <strong>Title:</strong>
   <%= @recipe.title %>
 </p>
+<p>
+  <strong>Ingredients</strong>
+  <table>
+    <th>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+      </tr>
+    </th>
+    <tbody>
+      <% @recipe.ingredients.each do |ingredient| %>
+      <tr>
+        <td><%= ingredient.name %></td>
+        <td><%= ingredient.quantity %> <%= ingredient.unit_of_measurement %></td>
+        <td><%= link_to 'Edit', edit_recipe_ingredient_path(params[:id], ingredient) %></td>
+        <td><%= link_to 'Delete', recipe_ingredient_path(params[:id], ingredient), method: :delete, data: { confirm: 'Are you sure?'} %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <p><%= link_to 'Add Ingredient', new_recipe_ingredient_path(@recipe) %></p>
+</p>
 
+<p>
+  <strong>Steps</strong>
+  <p><%= link_to 'Add Step' %></p>
+</p>
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
