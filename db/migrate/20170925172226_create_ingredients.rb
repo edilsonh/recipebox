@@ -4,10 +4,10 @@ class CreateIngredients < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :quantity
       t.string :unit_of_measurement
-      t.integer :recipe_id
+      t.references :recipe
 
       t.timestamps
     end
-    add_index :ingredients, :recipe_id
+    add_foreign_key :ingredients, :recipes, on_delete: :cascade
   end
 end

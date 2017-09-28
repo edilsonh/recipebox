@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20170925172301) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.integer "quantity"
     t.string "unit_of_measurement"
-    t.integer "recipe_id"
+    t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
@@ -30,10 +33,12 @@ ActiveRecord::Schema.define(version: 20170925172301) do
 
   create_table "steps", force: :cascade do |t|
     t.text "details"
-    t.integer "recipe_id"
+    t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_steps_on_recipe_id"
   end
 
+  add_foreign_key "ingredients", "recipes", on_delete: :cascade
+  add_foreign_key "steps", "recipes", on_delete: :cascade
 end
